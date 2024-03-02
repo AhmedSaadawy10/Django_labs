@@ -1,0 +1,32 @@
+{% extends "home.html" %}
+{% block content %}
+<h1>Update Product</h1>
+<div class="container">
+  <div class="d-flex justify-content-center row-cols-3">
+    <form method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="mb-3 text-center">
+        <label class="form-label h5">Name</label>
+        <input type="text" class="form-control" name="name" value="{{ product.name }}" required/>
+        <label class="form-label h5">Model</label>
+        <input type="text" class="form-control" name="model" value="{{ product.model }}" required/>
+        <label class="form-label h5">Price</label>
+        <input type="number" class="form-control" name="price" value="{{ product.price }}" required/>
+        <label class="form-label h5">Type</label>
+        <input type="text" class="form-control" name="type" value="{{ product.type }}" required/>
+        <label class="form-label h5">Image</label>
+        <input class="form-control" type="file" name="image">
+        <label class="form-label h5">Category</label>
+        <select class="form-select" aria-label="Default select example" id="category"  name="category">
+          {% for category in categories %}
+          <option value={{category.id}}>{{category.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3 text-center">
+        <button type="submit" class="btn btn-primary text-center">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

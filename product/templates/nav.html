@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>navbar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav span {
+            margin: 0 20px;
+        }
+
+        nav span a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav span a:hover {
+            text-decoration: underline;
+        }
+
+        .logout-btn {
+            color: white;
+            text-decoration: none;
+            background-color: red;
+        }
+
+        .login-link {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <span>Home</span>
+    <span><a href="{% url 'list' %}">Products</a></span>
+    <span><a href="{% url 'category' %}">Category</a></span>
+    <span><a href="{% url 'productlist' %}">List Using Generic</a></span>
+    <span>
+        {% if user.is_authenticated %}
+           <form method="post" action="{% url 'logout' %}">
+             {% csrf_token %}
+             <input type="submit" class="logout-btn" value="Logout">
+           </form>
+       {% else %}
+         <a href="{% url 'login' %}" class="login-link">Login</a>
+         <a href="{% url 'register' %}" class="login-link">Register</a>
+
+       {% endif %}
+    </span>
+
+
+</nav>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tracks</title>
+
+    <style>
+        /* Reset default margin and padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+               table {
+            width: 800px;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Styling for the actions links */
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .add-link {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        /* Styling for the footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+{% extends 'home.html'%}
+{% block content %}
+<a class="add-link" href="{% url 'add' %}" >Add product</a>
+<a class="add-link" href="{% url 'addform' %}" >Add product form</a>
+<a class="add-link" href="{% url 'addgenric' %}" >Add product Genric</a>
+<table border="1">
+
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th colspan="3">Actions</th>
+  </tr>
+  {% for product in data %}
+  <tr>
+    <td>{{ product.id }}</td>
+    <td>{{ product.name }}</td>
+    <td><a href="{% url 'details' product.id %}">Show</a></td>
+      <td><a href="{% url 'productdetail' product.id %}">Show Genric</a></td>
+      <td><a href="{% url 'deletegenric' product.id %}">Delete Genric</a></td>
+    <td><a href="{% url 'delete' product.id %}">Delete</a></td>
+     <td><a href="{% url 'update' product.id %}">Update</a></td>
+      <td><a href="{% url 'productupdate' product.id %}">Update Genric</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{%endblock content%}
+
+<div class="footer">
+    &copy; 2024 Your Company Name. All Rights Reserved.
+</div>
+
+</body>
+</html>

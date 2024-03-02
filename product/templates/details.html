@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'home.html'%}
+{% block content %}
+<table border="1" width="800px" height="150x">
+  <tr>
+
+    <th>Name</th>
+    <th>Model</th>
+    <th>Type</th>
+    <th>Price</th>
+    <th>Image</th>
+  </tr>
+
+  <tr>
+
+    <td>{{ product.name }}</td>
+    <td>{{ product.model }}</td>
+    <td>{{ product.type }}</td>
+    <td>{{ product.price }} $ </td>
+    <td><img src="{{ product.image.url }}" ></td>
+  </tr>
+
+</table>
+{% endblock content%}
+</body>
+</html>
